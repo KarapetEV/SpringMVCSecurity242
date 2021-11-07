@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Info</title>
+</head>
+<body>
+<h1 th:align="center">User Info</h1>
+<br/>
+<hr/>
+<br/>
+
+<table th:align="center" th:border="1px">
+    <tbody>
+    <tr>
+        <td th:text="'Id'"></td>
+        <td th:text="${user.getId()}"></td>
+    </tr>
+    <tr>
+        <td th:text="'Name'"></td>
+        <td th:text="${user.getName()}"></td>
+    </tr>
+    <tr>
+        <td th:text="'Age'"></td>
+        <td th:text="${user.getAge()}"></td>
+    </tr>
+    <tr>
+        <td th:text="'Email'"></td>
+        <td th:text="${user.getEmail()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}" id="edit_form"></form>
+<form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}" id="delete_form"></form>
+
+<table th:align="center">
+    <tbody>
+    <tr>
+        <td>
+            <input type="submit" value="Edit" form="edit_form"/>
+        </td>
+        <td>
+            <input type="submit" value="Delete" form="delete_form"/>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<hr/>
+<form th:align="center" th:method="GET" th:action="@{/users}">
+    <input type="submit" value="Back to Users"/>
+</form>
+</body>
+</html>
