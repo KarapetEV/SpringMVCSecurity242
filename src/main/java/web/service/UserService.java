@@ -18,4 +18,6 @@ public interface UserService {
     void removeUser(long id);
 
     void updateUser(long id, User updatedUser);
+
+    User getUserByName(String username);
 }

@@ -48,4 +48,10 @@ public class UserDAOImpl implements UserDAO {
         user.setAge(updatedUser.getAge());
         user.setEmail(updatedUser.getEmail());
     }
+
+    @Override
+    public User getUserByName(String username) {
+        return (User) entityManager.createQuery("from User u where u.username=username")
+                .setParameter("username", username).getSingleResult();
+    }
 }
