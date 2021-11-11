@@ -33,7 +33,7 @@
 
 <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}" id="edit_form"></form>
 <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}" id="delete_form"></form>
-
+<div th:sec:authorize="hasRole('ROLE_ADMIN')">
 <table th:align="center">
     <tbody>
     <tr>
@@ -46,10 +46,14 @@
     </tr>
     </tbody>
 </table>
+</div>
 <br/>
 <hr/>
-<form th:align="center" th:method="GET" th:action="@{/users}">
-    <input type="submit" value="Back to Users"/>
+<form th:align="center" th:method="GET" th:action="@{/}">
+    <input type="submit" value="Home Page"/>
+</form>
+<form th:align="center" th:method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
 </form>
 </body>
 </html>

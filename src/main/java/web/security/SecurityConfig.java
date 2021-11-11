@@ -42,6 +42,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(loginSuccessHandler)
                 // указываем action с формы логина
                 .loginProcessingUrl("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
                 // даем доступ к форме логина всем
                 .permitAll();
 
@@ -59,9 +61,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // делаем страницу регистрации недоступной для авторизированных пользователей
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/user").access("hasAnyRole('ROLE_USER')")
+                .antMatchers("/user").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
                 .antMatchers("/login").anonymous()
-                .antMatchers("/admin").access("hasAnyRole('ROLE_ADMIN')")
+                .antMatchers("/admin/**").access("hasAnyRole('ROLE_ADMIN')")
                 .anyRequest()
                 .authenticated();
     }

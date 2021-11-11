@@ -9,7 +9,7 @@
 <br/>
 <hr/>
 <br/>
-<form th:marginwidth="auto" th:align="center" th:method="POST" th:action="@{/users}" th:object="${user}">
+<form th:marginwidth="auto" th:align="center" th:method="POST" th:action="@{/WEB-INF/pages/users}" th:object="${user}">
     <div>
         <label for="name">Enter name: </label>
         <input type="text" th:field="*{name}" id="name"/>
@@ -32,7 +32,7 @@
 </form>
 <br/>
 <hr/>
-<form th:align="center" th:method="GET" th:action="@{/users}">
+<form th:align="center" th:method="GET" th:action="@{/WEB-INF/pages/users}">
     <input type="submit" value="Back to Users"/>
 </form>
 </body>
