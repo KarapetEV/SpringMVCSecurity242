@@ -23,7 +23,8 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUser(long id) {
-        return entityManager.find(User.class, id);
+        return (User) entityManager.createQuery("from User u JOIN fetch u.roles where u.id=:id")
+                .setParameter("id", id).getSingleResult();
     }
 
     @Override
@@ -51,7 +52,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserByName(String username) {
-        return (User) entityManager.createQuery("from User u where u.username=username")
+        return (User) entityManager.createQuery("from User u where u.username=:username")
                 .setParameter("username", username).getSingleResult();
     }
 }

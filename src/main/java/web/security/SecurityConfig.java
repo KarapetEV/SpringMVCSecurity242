@@ -35,41 +35,47 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()
-                // указываем страницу с формой логина
-                .loginPage("/login")
-                //указываем логику обработки при логине
-                .successHandler(loginSuccessHandler)
-                // указываем action с формы логина
-                .loginProcessingUrl("/login")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                // даем доступ к форме логина всем
-                .permitAll();
-
-        http.logout()
-                // разрешаем делать логаут всем
-                .permitAll()
-                // указываем URL логаута
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                // указываем URL при удачном логауте
-                .logoutSuccessUrl("/login?logout")
-                //выключаем кроссдоменную секьюрность (на этапе обучения неважна)
-                .and().csrf().disable();
+//        http.formLogin()
+//                .loginPage("/login")
+//                .successHandler(loginSuccessHandler)
+//                .loginProcessingUrl("/login")
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .permitAll();
+//
+//        http.logout()
+//                .permitAll()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                .logoutSuccessUrl("/login?logout")
+//                .and().csrf().disable();
 
         http
                 // делаем страницу регистрации недоступной для авторизированных пользователей
+//                .authorizeRequests()
+//                .antMatchers("/").permitAll()
+//                .antMatchers("/login").anonymous()
+//                .antMatchers("/user/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+//                .antMatchers("/admin/**").access("hasAnyRole('ROLE_ADMIN')")
+//                .anyRequest()
+//                .authenticated();
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/user").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
                 .antMatchers("/login").anonymous()
+                .antMatchers("/user/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
                 .antMatchers("/admin/**").access("hasAnyRole('ROLE_ADMIN')")
-                .anyRequest()
-                .authenticated();
+                .and()
+                .formLogin()
+                .successHandler(loginSuccessHandler)
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .and().csrf().disable();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(10);
     }
 }

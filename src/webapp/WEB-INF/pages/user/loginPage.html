@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+    <form method="post" action="/login">
+        <label for="username">Enter name:</label>
+        <input name="username" id="username"/>
+        <br/>
+        <br/>
+        <label for="password">Enter password:</label>
+        <input name="password" type="password" id="password"/>
+        <br/>
+        <input type="submit" value="Sing in"/>
+    </form>
+</div>
+<br/>
+<hr/>
+<p th:align="center">
+    <input type="button" onclick="window.location.href = '/admin/new'" value="Create New User"/>
+</p>
+</body>
+</html>

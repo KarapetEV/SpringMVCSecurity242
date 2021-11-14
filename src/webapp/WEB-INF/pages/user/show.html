@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>User Info</title>
@@ -10,11 +11,15 @@
 <hr/>
 <br/>
 
-<table th:align="center" th:border="1px">
+<table th:align="center" th:border="1px" th:cellpadding="10px">
     <tbody>
     <tr>
         <td th:text="'Id'"></td>
         <td th:text="${user.getId()}"></td>
+    </tr>
+    <tr>
+        <td th:text="'Name'"></td>
+        <td th:text="${user.getUsername()}"></td>
     </tr>
     <tr>
         <td th:text="'Name'"></td>
@@ -28,12 +33,19 @@
         <td th:text="'Email'"></td>
         <td th:text="${user.getEmail()}"></td>
     </tr>
+    <tr>
+        <td th:text="'Roles'"></td>
+        <!--<td th:each="role : ${roles}">
+            <p th:text="${role.getRole()}"></p>
+        </td>-->
+        <td th:text="${roles}"></td>
+    </tr>
     </tbody>
 </table>
 
 <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}" id="edit_form"></form>
 <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}" id="delete_form"></form>
-<div th:sec:authorize="hasRole('ROLE_ADMIN')">
+<div sec:authorize="hasRole('ROLE_ADMIN')">
 <table th:align="center">
     <tbody>
     <tr>

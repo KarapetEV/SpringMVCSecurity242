@@ -20,10 +20,11 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
-    public String userInfo(Principal principal, Model model) {
+    @GetMapping("/{id}")
+    public String getUserInfoByName(Principal principal, Model model) {
         User user = userService.getUserByName(principal.getName());
         model.addAttribute("user", user);
-        return "users/show";
+        model.addAttribute("roles", user.getRoles());
+        return "user/show";
     }
 }
