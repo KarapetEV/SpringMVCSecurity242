@@ -28,7 +28,7 @@ public class TestData {
         roleService.saveRole(new Role("ROLE_USER"));
 
         Set<Role> setOfRoles = new HashSet<>();
-        setOfRoles.add(roleService.getRoleByName("ROLE_ADMIN"));
+        setOfRoles.add(roleService.getRoleByName("ROLE_USER"));
 
         User bob = new User();
         bob.setUsername("bob");
@@ -39,7 +39,7 @@ public class TestData {
         bob.setRoles(setOfRoles);
         userService.addUser(bob);
 
-        setOfRoles.add(roleService.getRoleByName("ROLE_USER"));
+        setOfRoles.add(roleService.getRoleByName("ROLE_ADMIN"));
         User tom = new User();
         tom.setUsername("tom");
         tom.setPassword("tom");
