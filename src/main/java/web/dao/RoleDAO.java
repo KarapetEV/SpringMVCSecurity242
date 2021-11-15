@@ -3,6 +3,7 @@ package web.dao;
 import web.model.Role;
 import web.model.User;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,5 +21,7 @@ public interface RoleDAO {
 
     void removeRole(long id);
 
-    Set<Role> getSetOfRoles(List<String> rolesId);
+    HashSet<Role> getSetOfRoles(String[] roleSet);
+
+    public Set<Role> setRoleByName(String name, String[] rolesName);
 }

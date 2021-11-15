@@ -32,8 +32,12 @@
 </form>
 <br/>
 <hr/>
-<form th:align="center" th:method="GET" th:action="@{/WEB-INF/pages/users}">
+<form th:align="center" th:method="GET" th:action="@{/user}">
     <input type="submit" value="Home Page"/>
+</form>
+<br/>
+<form th:align="center" th:method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
 </form>
 </body>
 </html>

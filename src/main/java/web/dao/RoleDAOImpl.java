@@ -6,7 +6,6 @@ import web.model.Role;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,11 +51,21 @@ public class RoleDAOImpl implements RoleDAO {
         entityManager.remove(getRoleById(id));
     }
 
-    public Set<Role> getSetOfRoles(List<String> rolesId) {
-        Set<Role> setOfRoles = new HashSet<>();
-        for (String id : rolesId) {
-            setOfRoles.add(getRoleById(Long.parseLong(id)));
+    public HashSet getSetOfRoles(String[] rolesNames) {
+        Set<Role> roleSet = new HashSet<>();
+        for (String role : rolesNames) {
+            roleSet.add(getRoleByName(role));
         }
-        return setOfRoles;
+        return (HashSet) roleSet;
+    }
+
+    public Set<Role> setRoleByName(String name, String[] rolesName) {
+        Set<Role> roleSet = new HashSet<Role>();
+        if (rolesName != null) {
+            for (String roleName : rolesName) {
+                roleSet.add(getRoleByName(roleName));
+            }
+        }
+        return roleSet;
     }
 }

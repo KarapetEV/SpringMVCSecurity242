@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import web.dao.RoleDAO;
 import web.model.Role;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -49,7 +50,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Set<Role> getSetOfRoles(List<String> rolesId) {
-        return roleDAO.getSetOfRoles(rolesId);
+    public HashSet<Role> getSetOfRoles(String[] roleSet) {
+        return roleDAO.getSetOfRoles(roleSet);
+    }
+
+    @Override
+    public Set<Role> setRoleByName(String name, String[] rolesName) {
+        return roleDAO.setRoleByName(name, rolesName);
     }
 }

@@ -32,7 +32,7 @@ public class TestData {
 
         User bob = new User();
         bob.setUsername("bob");
-        bob.setPassword("bob");
+        bob.setPassword("$2a$10$cHH0pSl9JDWIbs8cQe8DOebjqnv3ZmDRBoBRPZhZ4fdx5pGrtrY/2");
         bob.setName("Bob");
         bob.setAge(23);
         bob.setEmail("bob23@test.com");
@@ -42,7 +42,7 @@ public class TestData {
         setOfRoles.add(roleService.getRoleByName("ROLE_ADMIN"));
         User tom = new User();
         tom.setUsername("tom");
-        tom.setPassword("tom");
+        tom.setPassword("$2a$10$HzDrf3CzkFaWVSQmzQ5Ub.KXU.IrYziQtlNMI6yonLvUVnG4Qm22m");
         tom.setName("Tom");
         tom.setAge(41);
         tom.setEmail("tom41@test.com");

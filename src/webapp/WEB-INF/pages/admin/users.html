@@ -9,7 +9,7 @@
 <br/>
 <hr/>
 <br/>
-<table th:align="center" th:border="1px">
+<table th:align="center" th:border="1px" th:cellpadding="10px">
     <tbody>
     <tr>
         <th>id</th>
@@ -29,16 +29,10 @@
         <td th:text="${user.getAge()}"></td>
         <td th:text="${user.getEmail()}"></td>
         <td th:text="${user.getRoles()}"></td>
-        <td><a th:href="@{users/{id}(id=${user.getId()})}" th:text="'Info'"></a></td>
-<!--        <td>
-            <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}" id="edit_form">
-                <input type="submit" value="Edit"/>
-            </form>
-            <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}" id="delete_form">
-                <input type="submit" value="Delete"/>
-            </form>
-            -->
-        </td>
+        <td><form th:method="GET" th:action="@{users/{id}(id=${user.getId()})}">
+            <input type="submit" value="Info"/>
+        </form></td>
+        <!-- <td><a th:href="@{users/{id}(id=${user.getId()})}" th:text="'Info'"></a></td> -->
     </tr>
     </tbody>
 </table>
@@ -47,5 +41,9 @@
 <p th:align="center">
 <input type="button" onclick="window.location.href = '/admin/new'" value="Create New User"/>
 </p>
+<br/>
+<form th:align="center" th:method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
 </body>
 </html>

@@ -2,6 +2,7 @@ package web.service;
 
 import web.model.Role;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,5 +20,7 @@ public interface RoleService {
 
     void removeRole(long id);
 
-    Set<Role> getSetOfRoles(List<String> rolesId);
+    HashSet<Role> getSetOfRoles(String[] roleSet);
+
+    Set<Role> setRoleByName(String name, String[] rolesName);
 }
