@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Edit User Info</title>
@@ -9,7 +9,7 @@
 <br/>
 <hr/>
 <br/>
-<form th:align="center" th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+<form th:align="center" th:method="PATCH" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
     <div>
         <label for="name">Enter name: </label>
         <input type="text" th:field="*{name}" id="name"/>
@@ -32,12 +32,14 @@
 </form>
 <br/>
 <hr/>
-<form th:align="center" th:method="GET" th:action="@{/user}">
+<div th:align="center">
+<form th:method="GET" th:action="@{/user}">
     <input type="submit" value="Home Page"/>
 </form>
 <br/>
-<form th:align="center" th:method="POST" th:action="@{/logout}">
+<form th:method="POST" th:action="@{/logout}">
     <input type="submit" value="Logout"/>
 </form>
+</div>
 </body>
 </html>

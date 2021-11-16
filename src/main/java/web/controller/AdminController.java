@@ -37,15 +37,8 @@ public class AdminController {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
         model.addAttribute("roles", user.getRoles());
-//        model.addAttribute(userService.getUser(id));
         return "user/show";
     }
-
-//    @GetMapping("/{id}")
-//    public String showUserInfo(@PathVariable("id") long id, Model model) {
-//        model.addAttribute("user", userService.getUser(id));
-//        return "user/show";
-//    }
 
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user, Model model) {
@@ -62,7 +55,8 @@ public class AdminController {
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") long id) {
-        model.addAttribute("user", userService.getUser(id));
+        User user = userService.getUser(id);
+        model.addAttribute("user", user);
         model.addAttribute("roles", roleService.getAllRoles());
         return "redirect:admin/edit";
     }
@@ -72,7 +66,7 @@ public class AdminController {
                              @RequestParam("roles") String[] rolesNames) {
         user.setRoles(roleService.getSetOfRoles(rolesNames));
         userService.updateUser(id, user);
-        return "redirect:/admin";
+        return "redirect:/admin/users";
     }
 
     @DeleteMapping("/{id}")
