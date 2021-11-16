@@ -1,5 +1,7 @@
 package web.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -42,6 +44,14 @@ public class User implements UserDetails {
     private Set<Role> roles = new HashSet<>();
 
     public User() {
+    }
+
+    public User(String username, String password, String name, int age, String email) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.age = age;
+        this.email = email;
     }
 
     public User(String username, String password, String name, int age, String email, Set<Role> roles) {

@@ -9,9 +9,6 @@ import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
 
-import java.security.Principal;
-import java.util.List;
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -57,8 +54,8 @@ public class AdminController {
     public String edit(Model model, @PathVariable("id") long id) {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
-        model.addAttribute("roles", roleService.getAllRoles());
-        return "redirect:admin/edit";
+//        model.addAttribute("roles", roleService.getAllRoles());
+        return "redirect:/admin/edit_user";
     }
 
     @PatchMapping("/{id}")
