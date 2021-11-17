@@ -54,7 +54,7 @@ public class AdminController {
     public String edit(Model model, @PathVariable("id") long id) {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
-//        model.addAttribute("roles", roleService.getAllRoles());
+        model.addAttribute("roles", roleService.getAllRoles());
         return "redirect:/admin/edit_user";
     }
 
