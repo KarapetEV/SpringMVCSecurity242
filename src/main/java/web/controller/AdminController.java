@@ -55,7 +55,7 @@ public class AdminController {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
         model.addAttribute("roles", roleService.getAllRoles());
-        return "redirect:/admin/edit_user";
+        return "admin/edit";
     }
 
     @PatchMapping("/{id}")
@@ -63,7 +63,7 @@ public class AdminController {
                              @RequestParam("roles") String[] rolesNames) {
         user.setRoles(roleService.getSetOfRoles(rolesNames));
         userService.updateUser(id, user);
-        return "redirect:/admin/users";
+        return "redirect:/admin";
     }
 
     @DeleteMapping("/{id}")

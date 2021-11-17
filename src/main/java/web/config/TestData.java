@@ -1,5 +1,6 @@
 package web.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import web.model.Role;
 import web.model.User;
@@ -16,19 +17,23 @@ public class TestData {
     private final UserService userService;
     private final RoleService roleService;
 
+    @Autowired
     public TestData(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
 
-
+    @PostConstruct
     public void insertData() {
 
-        roleService.saveRole(new Role("ROLE_ADMIN"));
-        roleService.saveRole(new Role("ROLE_USER"));
+//        roleService.saveRole(new Role("ROLE_ADMIN"));
+//        roleService.saveRole(new Role("ROLE_USER"));
+
+        Role roleAdmin = new Role("ROLE_ADMIN");
+        Role roleUser = new Role("ROLE_USER");
 
         Set<Role> roles1 = new HashSet<>();
-        roles1.add(new Role("ROLE_USER"));
+        roles1.add(roleUser);
 
         User bob = new User("bob", "bob", "Bob", 23, "bob23@test.com");
 //        bob.setUsername("bob");
@@ -41,8 +46,8 @@ public class TestData {
         userService.addUser(bob);
 
         Set<Role> roles2 = new HashSet<>();
-        roles2.add(new Role("ROLE_USER"));
-        roles2.add(new Role("ROLE_ADMIN"));
+        roles2.add(roleUser);
+        roles2.add(roleAdmin);
 
         User tom = new User("tom", "tom", "Tom", 38, "tom38@test.com");
 //        tom.setUsername("tom");

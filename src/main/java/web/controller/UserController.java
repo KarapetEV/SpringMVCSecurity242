@@ -21,8 +21,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public String getUserInfoByName(Principal principal, Model model) {
-        User user = userService.getUserByName(principal.getName());
+    public String getUserInfoByName(@PathVariable("id") long id, Model model) {
+        User user = userService.getUser(id);
         model.addAttribute("user", user);
         model.addAttribute("roles", user.getRoles());
         return "user/show";
