@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import web.config.handler.LoginSuccessHandler;
 import web.service.UserDetailsServiceImpl;
 
@@ -71,5 +72,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setUserDetailsService(userDetailsService);
 
         return authenticationProvider;
+    }
+
+    @Bean
+    public SpringSecurityDialect springSecurityDialect(){
+        return new SpringSecurityDialect();
     }
 }

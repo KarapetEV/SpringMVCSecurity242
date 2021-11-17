@@ -39,6 +39,7 @@
         <input type="checkbox" th:name="roles" th:value="ROLE_USER"/> USER
         <input type="checkbox" th:name="roles" th:value="ROLE_ADMIN"/> ADMIN
     </div>
+    <br/>
     <div>
         <input type="submit" value="Create!"/>
     </div>
@@ -46,8 +47,9 @@
 <br/>
 <hr/>
 <form th:align="center" th:method="GET" th:action="@{/users}">
-    <input type="submit" value="Back to Users"/>
+    <input type="submit" value="Home Page"/>
 </form>
+<br/>
 <form th:align="center" th:method="POST" th:action="@{/logout}">
     <input type="submit" value="Logout"/>
 </form>

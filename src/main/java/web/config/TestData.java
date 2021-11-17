@@ -23,39 +23,36 @@ public class TestData {
         this.roleService = roleService;
     }
 
-    @PostConstruct
+
     public void insertData() {
 
-//        roleService.saveRole(new Role("ROLE_ADMIN"));
-//        roleService.saveRole(new Role("ROLE_USER"));
-
-        Role roleAdmin = new Role("ROLE_ADMIN");
-        Role roleUser = new Role("ROLE_USER");
+//        Role roleAdmin = new Role("ROLE_ADMIN");
+//        Role roleUser = new Role("ROLE_USER");
+        roleService.saveRole(new Role("ROLE_ADMIN"));
+        roleService.saveRole(new Role("ROLE_USER"));
 
         Set<Role> roles1 = new HashSet<>();
-        roles1.add(roleUser);
+        roles1.add(roleService.getRoleByName("ROLE_USER"));
 
-        User bob = new User("bob", "bob", "Bob", 23, "bob23@test.com");
-//        bob.setUsername("bob");
-//        bob.setPassword("bob");
-//        bob.setName("Bob");
-//        bob.setAge(23);
-//        bob.setEmail("bob23@test.com");
-//        bob.setRoles(setOfRoles);
+        User bob = new User();
+        bob.setUsername("bob");
+        bob.setPassword("bob");
+        bob.setName("Bob");
+        bob.setAge(23);
+        bob.setEmail("bob23@test.com");
         bob.setRoles(roles1);
         userService.addUser(bob);
 
         Set<Role> roles2 = new HashSet<>();
-        roles2.add(roleUser);
-        roles2.add(roleAdmin);
+        roles2.add(roleService.getRoleByName("ROLE_USER"));
+        roles2.add(roleService.getRoleByName("ROLE_ADMIN"));
 
-        User tom = new User("tom", "tom", "Tom", 38, "tom38@test.com");
-//        tom.setUsername("tom");
-//        tom.setPassword("tom");
-//        tom.setName("Tom");
-//        tom.setAge(41);
-//        tom.setEmail("tom41@test.com");
-//        tom.setRoles(setOfRoles);
+        User tom = new User();
+        tom.setUsername("tom");
+        tom.setPassword("tom");
+        tom.setName("Tom");
+        tom.setAge(41);
+        tom.setEmail("tom41@test.com");
         tom.setRoles(roles2);
         userService.addUser(tom);
     }

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.w3c.dom.stylesheets.LinkStyle;
 import web.model.User;
 import web.service.RoleService;
 import web.service.UserService;
@@ -34,7 +33,7 @@ public class AdminController {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
         model.addAttribute("roles", user.getRoles());
-        return "user/show";
+        return "admin/showForAdmin";
     }
 
     @GetMapping("/new")
@@ -59,9 +58,9 @@ public class AdminController {
     }
 
     @PatchMapping("/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id,
-                             @RequestParam("roles") String[] rolesNames) {
-        user.setRoles(roleService.getSetOfRoles(rolesNames));
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") long id) {
+//                             @RequestParam("roles") String[] rolesNames) {
+//        user.setRoles(roleService.getSetOfRoles(rolesNames));
         userService.updateUser(id, user);
         return "redirect:/admin";
     }

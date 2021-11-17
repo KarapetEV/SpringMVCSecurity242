@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>User Info</title>
@@ -39,10 +39,11 @@
     </tr>
     </tbody>
 </table>
-
-<form th:method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}" id="edit_form"></form>
-<form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}" id="delete_form"></form>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
+<br/>
+<!--
+<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+    <form th:method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}" id="edit_form"></form>
+    <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}" id="delete_form"></form>
     <table th:align="center">
         <tbody>
         <tr>
@@ -59,9 +60,11 @@
 <br/>
 <hr/>
 <div th:align="center">
-    <form th:method="GET" th:action="@{/user}">
+    <form th:method="GET" th:action="@{/admin}">
         <input type="submit" value="Home Page"/>
     </form>
+-->
+<div th:align="center">
     <br/>
     <form th:method="POST" th:action="@{/logout}">
         <input type="submit" value="Logout"/>

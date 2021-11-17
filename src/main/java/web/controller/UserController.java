@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
 
-import java.security.Principal;
-
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -25,6 +23,6 @@ public class UserController {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
         model.addAttribute("roles", user.getRoles());
-        return "user/show";
+        return "user/showForUser";
     }
 }
